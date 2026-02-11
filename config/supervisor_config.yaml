@@ -1,0 +1,75 @@
+# Supervisor Agent Configuration
+supervisor:
+  name: "Master Coordinator Agent"
+  description: "Routes queries to appropriate sub-agents"
+  model: "llama-3.1-8b-instant"
+  temperature: 0.7
+  max_tokens: 1024
+  timeout: 30
+
+# Agent Registry - which agents are available
+agents:
+  math_agent:
+    name: "Math Specialist"
+    port: 8000
+    url: "http://localhost:8000"
+    description: "Handles mathematical operations and calculations"
+    capabilities:
+      - "arithmetic"
+      - "statistics"
+      - "aggregation"
+    keywords:
+      - "average"
+      - "sum"
+      - "multiply"
+      - "divide"
+      - "max"
+      - "min"
+      - "calculate"
+
+  data_agent:
+    name: "Data Analyst"
+    port: 8001
+    url: "http://localhost:8001"
+    description: "Handles data filtering, grouping, and analysis"
+    capabilities:
+      - "filtering"
+      - "grouping"
+      - "sorting"
+      - "aggregation"
+    keywords:
+      - "filter"
+      - "group"
+      - "sort"
+      - "count"
+      - "group by"
+      - "analyze"
+
+  text_agent:
+    name: "Text Processor"
+    port: 8002
+    url: "http://localhost:8002"
+    description: "Handles text analysis, summarization, and classification"
+    capabilities:
+      - "summarization"
+      - "extraction"
+      - "classification"
+      - "analysis"
+    keywords:
+      - "summarize"
+      - "extract"
+      - "classify"
+      - "analyze text"
+      - "summary"
+
+# Logging
+logging:
+  verbose: true
+  show_routing: true
+  show_agent_calls: true
+
+# Timeouts
+timeouts:
+  agent_response: 30
+  mcp_call: 10
+  aggregation: 5
